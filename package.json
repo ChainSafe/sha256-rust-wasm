@@ -1,0 +1,21 @@
+{
+  "name": "sha256-rust-wasm",
+  "version": "1.0.0",
+  "description": "Wrapper around sha256 rust implementation",
+  "main": "lib/index.js",
+  "repository": "https://github.com/ChainSafe/sha256-rust-wasm",
+  "author": "ChainSafe Systems",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build:rust": "wasm-pack build --target nodejs --out-dir ../src/wasm-build ./rust-impl",
+    "clean": "rm -rf lib",
+    "init": "mkdir lib",
+    "prebuild": "yarn run clean && yarn run init && yarn build:rust",
+    "build": "tsc --declaration",
+    "postbuild": "cp -R src/wasm-build lib/wasm-build"
+  },
+  "devDependencies": {
+    "typescript": "3.5.3"
+  }
+}
